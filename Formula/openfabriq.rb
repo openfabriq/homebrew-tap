@@ -5,8 +5,8 @@
 class Openfabriq < Formula
   desc "Run a software factory described in your repository, with your Claude Code"
   homepage "https://openfabriq.dev"
-  url "https://registry.npmjs.org/openfabriq/-/openfabriq-0.1.1.tgz"
-  sha256 "b0e38a32d48fbab3c09d79979e9f8da2cad9e6dc63a3f8b48ac294356795e1b4"
+  url "https://registry.npmjs.org/openfabriq/-/openfabriq-0.1.2.tgz"
+  sha256 "c1c037d4a1a5b7c8e46e28b91cc44d908d74cdc21aa2afb4016f87a4e0c57619"
   license "Apache-2.0"
 
   depends_on "gh"
