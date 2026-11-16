@@ -1,0 +1,30 @@
+name: Update the formula
+
+# Every hour, the formula follows npm's latest openfabriq: its url and its sha256, computed from the tarball npm serves.
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: The formula follows npm's latest version
+        run: scripts/update-formula.sh
+      - name: Commit
+        run: |
+          git diff --quiet && exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "openfabriq $(npm view openfabriq dist-tags.latest)"
+          git push
